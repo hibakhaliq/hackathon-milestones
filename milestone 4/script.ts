@@ -1,6 +1,9 @@
 document.getElementById('resumeForm')?.addEventListener('submit',function(event){
     event.preventDefault();
 
+    if (profilePictureInput&& nameElement.value && emailElement.value && phoneElement.value && educationElement.value && experienceElement.value && skillsElement.value){
+
+
     const nameElement = document.getElementById('name') as HTMLInputElement
     const emailElement = document.getElementById('email') as HTMLInputElement
     const phoneElement = document.getElementById('phone') as HTMLInputElement
@@ -8,7 +11,7 @@ document.getElementById('resumeForm')?.addEventListener('submit',function(event)
     const experienceElement = document.getElementById('experience') as HTMLInputElement
     const skillsElement = document.getElementById('skills') as HTMLInputElement
 
-    if (nameElement.value && emailElement.value && phoneElement.value && educationElement.value && experienceElement.value && skillsElement.value){
+    if (rofilePictureInput && nameElement.value && emailElement.value && phoneElement.value && educationElement.value && experienceElement.value && skillsElement.value){
 
         const name = nameElement.value;
         const email = emailElement.value;
@@ -17,10 +20,15 @@ document.getElementById('resumeForm')?.addEventListener('submit',function(event)
         const experience = experienceElement.value;
         const skills = skillsElement.value;
 
+       const profilePictureFile = profilePictureInput.files?.[0]
+        const profilePictureURL = profilePictureFile ? URL.createObjectURL(profilePictureFile): "" ; 
+
 
         //creating resume output
         const resumeOutput = `
         <h2>Resume</h2>
+        ${profilePictureURL ? `<img src = "${profilePictureURL} alt ="Profile Picture" class="profilePicture">` : ''}
+        
         <p><strong>Name:</strong> <span id = "edit-name" class = "editable" ${name} </span>  </p>
         <p><strong>Email:</strong> <span id = "edit-email" class = "editable" ${email} </span>  </p>
         <p><strong>Phone:</strong> <span id = "edit-phone" class = "editable" ${phone} </span> </p>
