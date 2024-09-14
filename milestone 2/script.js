@@ -3,6 +3,9 @@ var formElement = document.getElementById('resumeform');
 formElement.addEventListener('submit', function (event) {
     event.preventDefault(); // Prevent form from submitting
 
+    var profilePictureInput = document.getElementById('profilePicture');
+
+
     var nameElement = document.getElementById('name');
     var emailElement = document.getElementById('email');
     var phoneElement = document.getElementById('phone');
@@ -10,13 +13,17 @@ formElement.addEventListener('submit', function (event) {
     var experienceElement = document.getElementById('experience');
     var skillsElement = document.getElementById('skills');
 
-    if (nameElement && emailElement && phoneElement && educationElement && experienceElement && skillsElement) {
+    if (profilePictureInput &&nameElement && emailElement && phoneElement && educationElement && experienceElement && skillsElement) {
         var name = nameElement.value;
         var email = emailElement.value;
         var phone = phoneElement.value;
         var education = educationElement.value;
         var experience = experienceElement.value;
         var skills = skillsElement.value;
+
+        var profilePictureFile = (_a = profilePictureInput.files) === null || _a === void 0 ? void 0 : _a[0];
+        var profilePictureURL = profilePictureFile ? URL.createObjectURL(profilePictureFile) : '';
+        
 
         // Creating resume output
         var resumeOutput = `
