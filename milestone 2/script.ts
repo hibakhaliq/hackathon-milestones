@@ -1,6 +1,9 @@
 document.getElementById('resumeForm')?.addEventListener('submit',function(event){
     event.preventDefault();
 
+    
+    const profilePictureInput = document.getElementById('profilePicture') as HTMLInputElement
+
     const nameElement = document.getElementById('name') as HTMLInputElement
     const emailElement = document.getElementById('email') as HTMLInputElement
     const phoneElement = document.getElementById('phone') as HTMLInputElement
@@ -8,7 +11,7 @@ document.getElementById('resumeForm')?.addEventListener('submit',function(event)
     const experienceElement = document.getElementById('experience') as HTMLInputElement
     const skillsElement = document.getElementById('skills') as HTMLInputElement
 
-    if (nameElement.value && emailElement.value && phoneElement.value && educationElement.value && experienceElement.value && skillsElement.value){
+    if (lePictureInput&& nameElement.value && emailElement.value && phoneElement.value && educationElement.value && experienceElement.value && skillsElement.value){
 
         const name = nameElement.value;
         const email = emailElement.value;
@@ -16,11 +19,15 @@ document.getElementById('resumeForm')?.addEventListener('submit',function(event)
         const education = educationElement.value;
         const experience = experienceElement.value;
         const skills = skillsElement.value;
+const profilePictureFile = profilePictureInput.files?.[0]
+        const profilePictureURL = profilePictureFile ? URL.createObjectURL(profilePictureFile): "" ;
+
 
 
         //creating resume output
         const resumeOutput = `
         <h2>Resume</h2>
+        ${profilePictureURL ? `<img src = "${profilePictureURL} alt ="Profile Picture" class="profilePicture">` : ''}
         <p><strong>Name:</strong> ${name} </p>
         <p><strong>Email:</strong> ${email} </p>
         <p><strong>Phone:</strong> ${phone} </p>
